@@ -1,0 +1,21 @@
+19
+source D0
+source S0
+stack C1 H2
+source S1
+source S2
+source S3
+source D1
+source C0
+newstack H3
+source H0
+source C1
+newstack H2
+source H1
+source D2
+source C2
+source D3
+source C3
+source H2
+source H3
+21.631 seconds

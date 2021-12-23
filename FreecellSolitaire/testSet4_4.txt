@@ -1,0 +1,8 @@
+D2 C2
+D1 H0
+C0 D0
+H2 S0
+S1 H3
+H1 C1
+D3 C3
+S2 S3

@@ -1,0 +1,35 @@
+33
+source C0
+source C1
+stack H4 C5
+source D0
+source S0
+freecell D5
+stack S3 H4
+source H0
+newstack H3
+source H1
+source H2
+stack S3 D4
+source H3
+newstack C2
+source H4
+source H5
+source S1
+newstack C5
+source S2
+source S3
+source S4
+source S5
+newstack C4
+source C2
+source C3
+source C4
+source C5
+source D1
+newstack D4
+source D2
+source D3
+source D4
+source D5
+0.062 seconds
