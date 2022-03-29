@@ -12,4 +12,9 @@ It is called from the cmd with the following pattern: java Main <algorithm> <fil
            4) astar :A* first search
   <file1>: the file that has the solitaire problem with the same format as the testSet#_#.txt 
   <file2>: the file that you want the solution to be saved.
+             
+The depth, and best algorithms finds just a solution. The other 2 algorithms(breadth and astar) finds the best solution (or one of them).
+             
+Warning!!
+astar algorithm doesn't find the best solution always because of a bug at the used heuristic.  
   
