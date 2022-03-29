@@ -1,0 +1,21 @@
+19
+
+source S0
+source D0
+source D1
+source D2
+source C0
+source C1
+source S1
+source S2
+stack H2 C3
+source C2
+source S3
+newstack H1
+newstack H3
+source H0
+source H1
+source H2
+source D3
+source C3
+source H3

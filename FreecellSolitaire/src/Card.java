@@ -8,10 +8,6 @@ public class Card {
 		value = val;
 	}
 
-	public void setValue(int v) {// delete this method
-		value = v;
-	}
-
 	public char getTribe() {
 		return tribe;
 	}

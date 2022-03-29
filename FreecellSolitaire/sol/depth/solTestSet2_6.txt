@@ -1,0 +1,119 @@
+117
+
+source C0
+stack C2 H3
+freecell H5
+newstack S1
+freecell S1
+newstack C4
+stack C4 D5
+stack C3 H4
+source C1
+newstack C5
+newstack C3
+freecell C5
+newstack H4
+freecell H4
+source D0
+source D1
+source C2
+source C3
+stack S2 H3
+newstack H1
+stack H1 S2
+newstack D4
+newstack H1
+newstack S2
+stack H1 S2
+newstack H3
+stack H3 C4
+newstack H1
+stack S2 H3
+stack H1 S2
+newstack H2
+source D2
+source S0
+stack D4 S5
+newstack H1
+newstack D4
+newstack S5
+stack H1 S2
+stack D4 S5
+source D3
+source D4
+newstack H1
+newstack S2
+stack H1 S2
+newstack H3
+stack H3 S4
+newstack H1
+stack S2 H3
+stack H1 S2
+source C4
+newstack H1
+newstack S2
+stack H1 S2
+newstack H3
+newstack H1
+stack S2 H3
+stack S4 D5
+newstack S2
+stack H3 S4
+stack S2 H3
+stack H1 S2
+newstack H5
+newstack H1
+newstack S2
+stack H1 S2
+newstack H3
+newstack H1
+stack S2 H3
+stack H1 S2
+stack S4 H5
+newstack S4
+newstack H1
+newstack S2
+freecell H2
+stack H3 S4
+stack H1 S2
+newstack H3
+stack S4 H5
+stack H3 S4
+newstack H1
+newstack H3
+stack S2 H3
+source D5
+newstack S4
+stack H1 S2
+stack S4 H5
+newstack S3
+newstack S4
+newstack H1
+newstack S2
+stack H3 S4
+stack H1 S2
+newstack H3
+stack S4 H5
+stack H3 S4
+newstack H1
+newstack H3
+stack S2 H3
+source H0
+newstack S4
+source H1
+newstack S2
+stack H3 S4
+stack S2 H3
+source H2
+newstack S2
+source H3
+stack S4 H5
+source S1
+newstack S4
+source S2
+source S3
+source S4
+source S5
+source C5
+source H4
+source H5

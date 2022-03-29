@@ -1,0 +1,245 @@
+243
+
+freecell C5
+stack S4 H5
+freecell C1
+newstack S4
+freecell S4
+newstack H5
+freecell H5
+newstack C3
+source D0
+stack C4 D5
+source S0
+newstack C4
+stack H1 C2
+stack C3 D4
+stack C4 D5
+newstack C3
+newstack D4
+stack C3 D4
+newstack C4
+stack S2 H3
+stack C4 D5
+newstack C3
+newstack C4
+source S1
+stack C3 D4
+stack C4 D5
+newstack C3
+stack D4 S5
+stack C3 D4
+newstack C4
+source S2
+stack C4 D5
+newstack H3
+stack H3 C4
+newstack D2
+stack D2 C3
+newstack H3
+newstack C4
+stack H3 C4
+source S3
+newstack H3
+stack C4 D5
+stack H3 C4
+newstack D2
+newstack H3
+newstack C4
+stack H3 C4
+newstack C3
+stack D2 C3
+newstack H3
+newstack D2
+stack C4 D5
+stack H3 C4
+stack D2 C3
+newstack H3
+newstack D4
+stack H3 C4
+newstack D2
+newstack H3
+stack C3 D4
+stack D2 C3
+newstack C4
+newstack D2
+stack H3 C4
+stack D2 C3
+newstack S5
+newstack H3
+stack C4 D5
+newstack D2
+stack H3 C4
+stack D2 C3
+newstack H1
+newstack H3
+stack C2 H3
+stack H1 C2
+newstack C4
+stack D3 C4
+stack H4 S5
+newstack D3
+stack C4 D5
+newstack H4
+stack D3 C4
+stack H4 S5
+newstack D2
+newstack D3
+stack C3 H4
+stack D2 C3
+newstack C4
+stack D3 C4
+newstack D2
+stack C3 D4
+stack H2 C3
+newstack D3
+stack C4 D5
+newstack H4
+stack D3 C4
+stack H4 S5
+newstack H1
+newstack D3
+stack C2 D3
+stack H1 C2
+newstack C4
+stack H3 C4
+newstack H4
+source D1
+stack H4 S5
+newstack H3
+stack C4 D5
+newstack H4
+stack H3 C4
+stack H4 S5
+newstack H2
+newstack H3
+stack C3 H4
+stack H2 C3
+newstack C4
+stack H3 C4
+newstack H2
+stack C3 D4
+source D2
+newstack H3
+stack C4 D5
+newstack H4
+stack C3 H4
+stack D4 S5
+stack C3 D4
+newstack C4
+stack C3 H4
+stack H2 C3
+newstack D4
+stack C4 D5
+stack D4 S5
+newstack H1
+newstack H2
+stack C3 D4
+stack H2 C3
+newstack C4
+stack H1 C2
+stack C4 D5
+stack H3 C4
+newstack H2
+stack C3 H4
+newstack C3
+newstack H3
+stack H2 C3
+newstack C4
+stack H3 C4
+newstack D4
+stack H4 S5
+newstack H3
+stack C4 D5
+stack H3 C4
+newstack H4
+newstack H3
+source C0
+stack H4 S5
+newstack C4
+stack H3 C4
+newstack H4
+stack D4 S5
+newstack H3
+stack C4 D5
+newstack H2
+stack C3 D4
+stack H2 C3
+newstack C4
+newstack H2
+stack C3 H4
+stack C4 D5
+newstack D4
+stack C3 D4
+stack H4 S5
+stack C3 H4
+newstack C4
+stack C3 D4
+stack H2 C3
+newstack H4
+stack C4 D5
+stack H4 S5
+newstack H1
+newstack H2
+stack C3 H4
+stack H2 C3
+newstack C4
+stack H1 C2
+stack C4 D5
+stack H3 C4
+newstack H2
+stack C3 D4
+newstack C3
+newstack H3
+source H0
+newstack C4
+stack H2 C3
+newstack H4
+stack D4 S5
+newstack H2
+stack C3 D4
+stack H2 C3
+source H1
+source H2
+newstack C3
+stack C3 H4
+newstack D4
+stack C3 D4
+newstack C3
+stack H4 S5
+stack C3 D4
+stack C3 H4
+newstack C2
+stack C3 D4
+newstack C3
+stack C2 H3
+newstack H4
+stack D4 S5
+stack C3 D4
+stack C3 H4
+newstack D4
+stack C3 D4
+stack H4 S5
+stack C3 H4
+source D3
+source D4
+source D5
+newstack C3
+newstack H4
+stack C3 H4
+newstack C2
+newstack C3
+stack H4 S5
+stack C3 H4
+source H3
+newstack C3
+source H4
+newstack C5
+source C1
+source C2
+source C3
+source C4
+source C5
+source S4
+source S5
+source H5

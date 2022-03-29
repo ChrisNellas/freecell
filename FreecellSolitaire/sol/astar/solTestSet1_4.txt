@@ -1,0 +1,19 @@
+17
+
+source D0
+source C0
+source S0
+source D1
+source C1
+source S1
+source S2
+source S3
+freecell H3
+source H0
+source H1
+source D2
+source H2
+source C2
+source D3
+source H3
+source C3

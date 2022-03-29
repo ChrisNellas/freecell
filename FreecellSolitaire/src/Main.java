@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.management.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -13,7 +12,7 @@ import java.util.Stack;
 
 public class Main {
 
-	public static void main(String[] args) {// String[] args String meth, String probFileName, String solFileName
+	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
 		long endTime = -1 ;
 		String method = args[0];
@@ -21,13 +20,9 @@ public class Main {
 		String solutionFileName = args[2];
 
 		int numOfStack = 0; // has the stack's number
-		int cardCounter = 0; // Maybe useless
+		int cardCounter = 0; 
+		int totalCardSum = 0;
 
-
-		/*Runtime rt = Runtime.getRuntime();
-		
-		System.out.println("PROCESSORS:"+rt.availableProcessors());
-		System.out.println("MAX MEMORY: "+rt.maxMemory());*/
 		HashMap<Integer, Stack<Card>> rootNodeStacks = new HashMap<Integer, Stack<Card>>();
 
 		TreeNode rootNode;
@@ -36,8 +31,6 @@ public class Main {
 		System.out.println("problem's file name: " + problemFile);
 		System.out.println("solution's file name: " + solutionFileName);
 
-		// Reading all lines from problemFile
-		//String method = "depth"; //depth  breadth
 		try {
 			File f = new File(problemFile);
 			FileReader freader = new FileReader(f);
@@ -49,20 +42,19 @@ public class Main {
 
 			while (line != null) {
 
-				String[] subStr = line.split(" ");
+				String[] subStr = line.split(" "); // split the string whenever it finds a space
 				cardCounter += subStr.length;
 				for (int i = 0; i < subStr.length; i++) {
-					stack.add(createCard(subStr[i]));
+					Card card = createCard(subStr[i]);
+					stack.add(card);
+					totalCardSum+= card.getValue()+1;  // keeps the total value of cards (from 1 - to N+1  for example if i have 4 cards for every tribe then it will add (1+2+3+4)*4 = 40
+					
 				}
 				rootNodeStacks.put(numOfStack, (Stack<Card>) stack.clone());
-				// System.out.println(stack.size());
 				stack.clear();
-				// System.out.println("TIME OF TRUTH:
-				// "+rootNodeStacks.get(numOfStack).get(4).getValue());
 				line = reader.readLine();
 				numOfStack++;
 			}
-			
 			reader.close();
 			freader.close();
 			f = null;
@@ -71,40 +63,10 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		/* DELETE IT. TO CHECK IF CONVERT RIGHT DIFFERENT TYPES FROM Object 
-		Object obj1 = rootNodeStacks.get(2); //new Stack<Card>();
-		System.out.println(obj1.getClass());
-
-		Stack<Card> stack1 = (Stack<Card>) obj1;
-
-		System.out.println(rootNodeStacks.get(2).size());
-		System.out.println(stack1.size());
 		
-		for(int i=0;i<stack1.size();i++) {
-			System.out.println(rootNodeStacks.get(2).get(i).getTribe()+""+rootNodeStacks.get(2).get(i).getValue()+""+stack1.get(i).getTribe()+""+stack1.get(i).getValue());
-		}
 		
-		Card[] cards = new Card[4]; 
-		
-		cards[0] = new Card('S', 4);
-		cards[1] = new Card('D', 2);
-		cards[2] = new Card('C', 7);
-		cards[3] = new Card('H', 12);
-		Object obj2 = cards;
-		
-		System.out.println(obj2.getClass().toString().equals("class [LCard;"));
-		Card[] ca = (Card[]) obj2;
-		
-		System.out.println(cards.length);
-		System.out.println(ca.length);
-		
-		for(int i=0;i<ca.length;i++) {
-			System.out.println(cards[i].getTribe()+""+cards[i].getValue()+""+ca[i].getTribe()+""+ca[i].getValue());
-		}
-		*/
-		
-		rootNode = new TreeNode(rootNodeStacks, cardCounter);
-		rootNodeStacks = null; // I DON'T NEED THIS ANYMORE COULD CHANGE rootNode stacks values
+		rootNode = new TreeNode(rootNodeStacks, cardCounter, totalCardSum);
+		rootNodeStacks = null; 
 
 		
 		// THE ALGORITHMS PART
@@ -112,31 +74,16 @@ public class Main {
 		
 		ArrayList<TreeNode> reversedSolutionPath = null ; // it will have all nodes that are part of solution path (solution node -> root node)
 		
-		LinkedList<TreeNode> frontier = new LinkedList<TreeNode>(); //keep the unsearched kids-paths
+		LinkedList<TreeNode> frontier = new LinkedList<TreeNode>(); //keep the unsearched nodes
 		
-		frontier.addFirst(rootNode);
+		frontier.addFirst(rootNode); // insert the root node to the first position 
 		
 		boolean solved = false;
 		boolean timeout = false;
-		
-		//delete it 
-		int k=0;
-		int givenTime = 300000; // the time i want to find a solution
-		
-		/*
-		ArrayList<TreeNode> currNodeChildren = rootNode.findChildren();
-		System.out.println(frontier.size());
-		for(int i=0;i<frontier.size();i++) {
-			System.out.println(frontier.get(i));
-		}
-		
-		frontier.addAll(0, currNodeChildren);
-		System.out.println(frontier.size());
-		for(int i=0;i<frontier.size();i++) {
-			System.out.println(frontier.get(i));
-		}
-		*/
-		
+		 
+		int k=0; // is used to print the node which will be under processing when timeout will occur
+		int givenTime = 300000; // maximum amount of milliseconds the program has to find a solution
+				
 		
 		switch (method) {
 			case "breadth":
@@ -154,17 +101,17 @@ public class Main {
 								endTime = System.currentTimeMillis();
 								break;
 							} else {
-								frontier.addLast(currNodeChildren.get(i));
+								frontier.addLast(currNodeChildren.get(i)); 
 							}
 						} else {
 							timeout = true;
-							k=i; //delete it
+							k=i; 
 							break;
 						}
 					}
 					if(timeout) {
 						
-							//delete it
+							//print the under process node before timeout occur
 							System.out.println("DESCRIPTION: "+currNodeChildren.get(k).description);
 							System.out.print("freecells: ");
 							for(int j=0;j<currNodeChildren.get(k).freeCells.length;j++) {
@@ -207,8 +154,8 @@ public class Main {
 					ArrayList<TreeNode> currNodeChildren = currNode.findChildren(); 	// find current's node children
 					
 					if(System.currentTimeMillis()-startTime<givenTime) {
-						frontier.addAll(0, currNodeChildren);  // the children will be inserted at front     FOR ME(they will be reversed at the end the children)
-					}else{
+						frontier.addAll(0, currNodeChildren);  // the children will be inserted at front   
+					}else { // TIMEOUT
 						System.out.println("DESCRIPTION: "+currNodeChildren.get(k).description);
 						System.out.print("freecells: ");
 						for(int j=0;j<currNodeChildren.get(k).freeCells.length;j++) {
@@ -230,13 +177,10 @@ public class Main {
 							}
 							System.out.println();
 						}
-						
-						
 						System.out.println();
 						break;
 					}	
 				}
-				
 				break;
 			case "best":
 				
@@ -250,16 +194,11 @@ public class Main {
 					} 
 					
 					ArrayList<TreeNode> currNodeChildren = currNode.findChildren(); 	// find current's node children
-					//Scanner sc = new Scanner(System.in);
 					for(int i=0;i<currNodeChildren.size();i++) { 
 						if(System.currentTimeMillis()-startTime<givenTime) {
 							currNodeChildren.get(i).calculateCost(method);
-							/*System.out.println(currNodeChildren.get(i).g);
-							System.out.println(currNodeChildren.get(i).h);
-							System.out.println(currNodeChildren.get(i).f);
-							sc.nextLine();
-							*/
-							for(int j=0;j<frontier.size();j++) { //for every node in frontier , i compare the f with the f of currunt Node's i Child 
+														
+							for(int j=0;j<frontier.size();j++) { //for every node in frontier , i compare the f with the f of current node's i Child 
 								if(frontier.get(j).getF()>currNodeChildren.get(i).getF()) {
 									frontier.add(j, currNodeChildren.get(i));
 									break;
@@ -270,13 +209,14 @@ public class Main {
 							}	
 						}else {
 							timeout = true;
-							k=i; //delete it
+							k=i;
 							break;
 						}
 					}
+					
 					if(timeout) {
 						
-						//delete it
+						//print the under process node before timeout occur
 						System.out.println("DESCRIPTION: "+currNodeChildren.get(k).description);
 						System.out.print("freecells: ");
 						for(int j=0;j<currNodeChildren.get(k).freeCells.length;j++) {
@@ -303,9 +243,6 @@ public class Main {
 					}
 				
 				}
-				
-				
-				
 				break;
 			case "astar":
 			
@@ -319,42 +256,33 @@ public class Main {
 					} 
 					
 					ArrayList<TreeNode> currNodeChildren = currNode.findChildren(); 	// find current's node children
-					Scanner sc = new Scanner(System.in);
 					for(int i=0;i<currNodeChildren.size();i++) { 
-						System.out.println("i change child");
+
+						currNodeChildren.get(i).calculateCost(method); // calculate f of this node
 						
-						currNodeChildren.get(i).calculateCost(method);
-						System.out.println(currNodeChildren.get(i).g);
-						System.out.println(currNodeChildren.get(i).h);
-						System.out.println(currNodeChildren.get(i).f);
-						sc.nextLine();
 						if(System.currentTimeMillis()-startTime<givenTime) {
-							//currNodeChildren.get(i).calculateCost(method);
 							
 							for(int j=0;j<frontier.size();j++) { //for every node in frontier , i compare the f with the f of currunt Node's i Child 
-								//System.out.println("under limitation");
 								if(frontier.get(j).getF()>currNodeChildren.get(i).getF()) {
 									frontier.add(j, currNodeChildren.get(i));
 									break;
-								}else if(frontier.get(j).getF()==currNodeChildren.get(i).getF()&&currNodeChildren.get(i).getG()>frontier.get(j).getG()) { // if both node's cost are the same  //if(currNodeChildren.get(i).getG()>frontier.get(j).getG()) { // the node with the bigger g will be placed first in frontier 
+								}else if(frontier.get(j).getF()==currNodeChildren.get(i).getF()&&currNodeChildren.get(i).getG()<=frontier.get(j).getG()) { // if the ratings of both nodes are the same  the node with the bigger g will be the last of them in frontier 
 									frontier.add(j, currNodeChildren.get(i));
 									break;
-								
 								}
 							}
 							if(frontier.size()==0) { // it used only when i want to insert the first child of the root into the frontier
 								frontier.addFirst(currNodeChildren.get(i));
 							}
 						} else {
-							System.out.println("end of time");
 							timeout = true;
-							k=i; //delete it
+							k=i; 
 							break;
 						}	
 					}
 					if(timeout) {
 						
-						//delete it
+						//print the under process node before timeout occur
 						System.out.println("DESCRIPTION: "+currNodeChildren.get(k).description);
 						System.out.print("freecells: ");
 						for(int j=0;j<currNodeChildren.get(k).freeCells.length;j++) {
@@ -376,18 +304,9 @@ public class Main {
 							}
 							System.out.println();
 						}
-						
-						//System.out.println("H0".equals(rootNode.stacks.get(7).get(0).getTribe()+""+rootNode.stacks.get(7).get(0).getValue()));
-						System.out.println();
-						System.out.println("f:"+ currNodeChildren.get(k).f);
-						System.out.println("g:"+ currNodeChildren.get(k).g);
-						System.out.println("h:"+ currNodeChildren.get(k).h);
 						break;
 					}
-				
 				}
-				
-				
 				break;
 			default: 
 				System.out.println("INVALID METHOD");	
@@ -399,17 +318,14 @@ public class Main {
 			try {
 				File f = new File(solutionFileName);
 				FileWriter writer = new FileWriter(f);
-				// write the in the file
+
 				writer.write(String.valueOf(reversedSolutionPath.size()));
 				writer.write(System.lineSeparator());
 				writer.write(System.lineSeparator());
-				for(int i=reversedSolutionPath.size()-1;i>-1;i--) { //
+				for(int i=reversedSolutionPath.size()-1;i>-1;i--) { // the elements of this arraylist will be writen from last to first
 					writer.write(reversedSolutionPath.get(i).description);
 					writer.write(System.lineSeparator());
-					//System.out.println(reversedSolutionPath.get(i).description);
 				}
-				//DELETE IT
-				//writer.write((endTime-startTime)/1000.0 +" seconds");
 				System.out.println((endTime-startTime)/1000.0 +" seconds");
 
 				
@@ -421,56 +337,6 @@ public class Main {
 		} else {
 			System.out.println("failed to find a solution");
 		}
-		
-		
-		
-		/*
-		 // To see the children of a node
-		ArrayList<TreeNode> children = rootNode.findChildren(); 	// try to find current's node children
-		
-		for(int i=0;i<children.size();i++) {
-			
-			System.out.println("child:"+i);
-			System.out.println("DESCRIPTION: "+children.get(i).getDescription());
-			System.out.print("freecells: ");
-			for(int j=0;j<children.get(i).freeCells.length;j++) {
-				if(children.get(i).freeCells[j]!=null) {
-					System.out.print(children.get(i).freeCells[j].getTribe()+""+children.get(i).freeCells[j].getValue()+" ");
-				}
-			}
-			System.out.println();
-			System.out.print("foundation: ");
-			for(int j=0;j<children.get(i).foundations.length;j++) {
-				if(children.get(i).foundations[j]!=null) {
-					System.out.print(children.get(i).foundations[j].getTribe()+""+children.get(i).foundations[j].getValue()+" ");
-				}
-			}
-			System.out.println();
-			for(int j=0;j<children.get(i).stacks.size();j++) {
-				for(int k=0;k<children.get(i).stacks.get(j).size();k++) {
-					System.out.print(children.get(i).stacks.get(j).elementAt(k).getTribe()+""+children.get(i).stacks.get(j).elementAt(k).getValue()+" ");
-				}
-				System.out.println();
-			}
-		}
-		
-	*/
-		
-		//+children.get(i).stacks.get(j).elementAt(k).getValue()
-		/*
-		try {
-			File f = new File(solutionFileName);
-			FileWriter writer = new FileWriter(f);
-			// write the in the file
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	*/
-		
-
 	}
 
 	public static  Card createCard(String str) {
