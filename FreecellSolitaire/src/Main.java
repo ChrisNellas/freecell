@@ -41,7 +41,6 @@ public class Main {
 			Stack<Card> stack = new Stack<Card>(); // keep temporarily each stack's cards
 
 			while (line != null) {
-
 				String[] subStr = line.split(" "); // split the string whenever it finds a space
 				cardCounter += subStr.length;
 				for (int i = 0; i < subStr.length; i++) {
@@ -70,7 +69,7 @@ public class Main {
 
 		
 		// THE ALGORITHMS PART
-		// The rootNode will not be check if it is solution 
+		// The rootNode will not be checked if it is the solution 
 		
 		ArrayList<TreeNode> reversedSolutionPath = null ; // it will have all nodes that are part of solution path (solution node -> root node)
 		
@@ -357,6 +356,5 @@ public class Main {
 		}
 		
 		return solutionPathReversed;
-	}
-	
+	}	
 }
